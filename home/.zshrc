@@ -163,14 +163,8 @@ done
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
 
 setopt ALL_EXPORT
-if [ -z $MC_SID ];then
-  PS1="[$PR_BLUE%n$PR_NO_COLOR@$PR_GREEN%U%m%u$PR_NO_COLOR:$PR_RED%~$PR_NO_COLOR]%(!.#.$) "
-#  RPS1="$PR_LIGHT_YELLOW(%D{%H:%M %d/%m/%y})$PR_NO_COLOR"
-else
-  # mc dislikes nice two-sided colored prompt =(
-  PS1="[%n@%U%m%u:%2c]%(!.#.$) "
-  unset RPS1
-fi
+PS1="[$PR_BLUE%n$PR_NO_COLOR@$PR_GREEN%U%m%u$PR_NO_COLOR:$PR_RED%~$PR_NO_COLOR]%(!.#.$) "
+test "$MC_SID" && PS1="(mc)$PS1"
 unsetopt ALL_EXPORT
 
 #}}}
