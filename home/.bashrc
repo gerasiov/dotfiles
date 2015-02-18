@@ -21,8 +21,10 @@ HISTDIR="$HOME/.local/share/history"
 export DEBFULLNAME="Alexander GQ Gerasiov"
 export DEBEMAIL="gq@debian.org"
 
+export SHELL=$(which bash)
+
 TZ="Europe/Moscow"
-#SHELL='/bin/zsh'
+
 which less > /dev/null && export PAGER='less'
 which vim > /dev/null && export EDITOR='vim'
 export GREP_OPTIONS='--color=auto'

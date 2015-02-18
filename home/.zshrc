@@ -126,6 +126,8 @@ PATH="$PATH:/usr/local/sbin/:/sbin:/usr/sbin"
 [ -d ~/bin ] && PATH=~/bin:"${PATH}"
 typeset -U path				# remove duplicates
 
+SHELL=$(which zsh)
+
 TZ="Europe/Moscow"
 which less > /dev/null && PAGER='less'
 which vim > /dev/null && EDITOR='vim'
