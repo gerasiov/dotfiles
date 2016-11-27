@@ -199,12 +199,15 @@ alias 2koi8r='export LANG=ru_RU.KOI8-R'
 alias 2utf8='export LANG=ru_RU.UTF-8'
 
 if which grc >/dev/null; then
-  alias ping="grc --colour=auto ping"
-  alias traceroute="grc --colour=auto traceroute"
-  alias make="grc --colour=auto make"
-  alias diff="grc --colour=auto diff"
-  alias cvs="grc --colour=auto cvs"
-  alias netstat="grc --colour=auto netstat"
+  for COMMAND in \
+	  ping traceroute netstat ifconfig \
+	  mount df \
+	  configure make gcc g++ \
+	  diff wdiff \
+	  cvs;
+  do
+    alias ${COMMAND}="grc --colour=auto $COMMAND"
+  done
 fi
 
 #}}}
