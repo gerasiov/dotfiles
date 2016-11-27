@@ -80,7 +80,7 @@ fi
 #{{{
 setopt CORRECT			# use correction
 setopt CORRECT_ALL		# correct arguments
-CORRECT_IGNORE_FILE=".*"
+CORRECT_IGNORE_FILE='.*'
 SPROMPT='zsh: correct '%R' to '%r' ? [yes/No/edit/abort] '
 #}}}
 
