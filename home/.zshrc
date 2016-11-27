@@ -39,7 +39,7 @@ setopt HIST_NO_STORE		# do not store "fc -l" in history
 HISTFILE="$HISTDIR/zsh"
 HISTSIZE=25000
 SAVEHIST=25000
-HISTORY_IGNORE=ls:bg:fg:cd:run-help:popd
+HISTORY_IGNORE='(ls|bg|fg|cd *|run-help *|popd)'
 
 #}}}
 
