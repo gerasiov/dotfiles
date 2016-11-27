@@ -13,7 +13,7 @@ setopt PUSHD_SILENT		# silent pushd
 
 ## Expansion and Globbing
 #GLOB_DOTS
-setopt EXTENDED_GLOB		#
+#setopt EXTENDED_GLOB		# Turn if off, cause it uses special meaning for ^
 setopt NOMATCH			# print shell on ls a* if there are no a*
 setopt NUMERIC_GLOB_SORT	# sort filenames numerically
 setopt BRACECCL			# {1-3}=1 2 3
