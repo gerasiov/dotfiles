@@ -131,8 +131,8 @@ SHELL=$(which zsh)
 TZ="Europe/Moscow"
 which less > /dev/null && PAGER='less'
 which vim > /dev/null && EDITOR='vim'
-GREP_OPTIONS='--color=auto'
-GREP_COLOR='1;32'
+alias grep='grep --color=auto'
+GREP_COLORS='1;32'
 LESS='-R -M --shift 5'
 LESSHISTFILE="$HISTDIR/less"
 
