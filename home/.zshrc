@@ -146,6 +146,11 @@ unsetopt ALL_EXPORT
 ## Prompting
 #{{{
 
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(</etc/debian_chroot)
+fi
+
 setopt PROMPT_CR PROMPT_SP 	# Some magic. It's on by default, so doesn't matter
 
 autoload colors zsh/terminfo
@@ -165,6 +170,7 @@ PR_NO_COLOR="%{$terminfo[sgr0]%}"
 setopt ALL_EXPORT
 PS1="[$PR_BLUE%n$PR_NO_COLOR@$PR_GREEN%U%m%u$PR_NO_COLOR:$PR_RED%~$PR_NO_COLOR]%(!.#.$) "
 test "$MC_SID" && PS1="(mc)$PS1"
+test "$debian_chroot" && PS1="($debian_chroot)$PS1"
 unsetopt ALL_EXPORT
 
 #}}}
