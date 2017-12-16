@@ -66,6 +66,9 @@ bindkey -s '^Z' "fg\n"					# fetch background job into foreground
 autoload run-help
 autoload run-help-git
 autoload run-help-svn
+autoload run-help-ip
+autoload run-help-sudo
+autoload run-help-openssl
 alias help=run-help
 
 if [ "$TERM" = "screen" ];then
