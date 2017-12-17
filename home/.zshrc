@@ -69,6 +69,10 @@ autoload run-help-svn
 autoload run-help-ip
 autoload run-help-sudo
 autoload run-help-openssl
+
+# local helpers
+autoload run-help-gbp
+
 alias help=run-help
 
 if [ "$TERM" = "screen" ];then
@@ -128,6 +132,8 @@ PATH="$PATH:/usr/local/sbin/:/sbin:/usr/sbin"
 [ -d /usr/lib/ccache ] && PATH=/usr/lib/ccache:"${PATH}"
 [ -d ~/bin ] && PATH=~/bin:"${PATH}"
 typeset -U path				# remove duplicates
+
+FPATH="${FPATH}:${HOME}/.local/share/zsh/func"
 
 SHELL=$(which zsh)
 
