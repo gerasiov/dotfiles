@@ -72,6 +72,7 @@ autoload run-help-openssl
 
 # local helpers
 autoload run-help-gbp
+autoload run-help-docker
 
 alias help=run-help
 
