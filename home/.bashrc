@@ -8,33 +8,14 @@
 # if zsh exists use it
 which zsh >/dev/null&& [ -z "$FORCE" ] && exec zsh
 
-# Modify PATH
-PATH="$PATH:/usr/local/sbin/:/sbin:/usr/sbin"
-[ -d /usr/lib/ccache ] && PATH=/usr/lib/ccache:"${PATH}"
-[ -d ~/bin ] && PATH=~/bin:"${PATH}"
-export PATH
-
 HISTDIR="$HOME/.local/share/history"
 [ -d "$HISTDIR" ] || mkdir -p "$HISTDIR"
 
 # Export some variables
-export DEBFULLNAME="Alexander GQ Gerasiov"
-export DEBEMAIL="gq@debian.org"
-
 export SHELL=$(which bash)
 
-TZ="Europe/Moscow"
-
-which less > /dev/null && export PAGER='less'
-which vim > /dev/null && export EDITOR='vim'
-export GREP_OPTIONS='--color=auto'
-export GREP_COLOR='1;32'
-export LESS='-R -M --shift 5'
-export LESSHISTFILE="$HISTDIR/less"
-
-which lesspipe > /dev/null && eval $(lesspipe)
-which dircolors > /dev/null && eval $(dircolors)
-
+[ -f ~/.environment ] && . ~/.environment
+[ -f ~/.environment-local ] && . ~/.environment-local
 
 # Control history
 # don't put duplicate lines in the history. See bash(1) for more options
@@ -93,6 +74,7 @@ esac
 #{{{
 
 alias ls='ls --color=auto '
+alias grep='grep --color=auto'
 alias 2koi8r='export LANG=ru_RU.KOI8-R'
 alias 2utf8='export LANG=ru_RU.UTF-8'
 

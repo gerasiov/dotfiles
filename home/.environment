@@ -1,0 +1,18 @@
+export DEBFULLNAME="Alexander GQ Gerasiov"
+export DEBEMAIL="gq@debian.org"
+
+export PATH="$PATH:/usr/local/sbin/:/sbin:/usr/sbin"
+[ -d /usr/lib/ccache ] && PATH=/usr/lib/ccache:"${PATH}"
+[ -d ~/bin ] && PATH=~/bin:"${PATH}"
+
+export TZ="Europe/Moscow"
+which less > /dev/null && export PAGER='less'
+which vim > /dev/null && export EDITOR='vim'
+
+export GREP_COLORS='1;32'
+export LESS='-R -M --shift 5'
+export LESSHISTFILE="$HISTDIR/less"
+
+which lesspipe > /dev/null && eval $(lesspipe)
+which dircolors > /dev/null && eval $(dircolors)
+

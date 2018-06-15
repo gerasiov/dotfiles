@@ -124,33 +124,15 @@ zmodload -a zsh/mapfile mapfile
 ## Various exports
 #{{{
 
-setopt ALL_EXPORT
+export SHELL=$(which zsh)
 
-DEBFULLNAME="Alexander GQ Gerasiov"
-DEBEMAIL="gq@debian.org"
+[ -f ~/.environment ] && . ~/.environment
+[ -f ~/.environment-local ] && . ~/.environment-local
 
-PATH="$PATH:/usr/local/sbin/:/sbin:/usr/sbin"
-[ -d /usr/lib/ccache ] && PATH=/usr/lib/ccache:"${PATH}"
-[ -d ~/bin ] && PATH=~/bin:"${PATH}"
 typeset -U path				# remove duplicates
 
-FPATH="${FPATH}:${HOME}/.local/share/zsh/func"
+export FPATH="${FPATH}:${HOME}/.local/share/zsh/func"
 
-SHELL=$(which zsh)
-
-TZ="Europe/Moscow"
-which less > /dev/null && PAGER='less'
-which vim > /dev/null && EDITOR='vim'
-alias grep='grep --color=auto'
-GREP_COLORS='1;32'
-LESS='-R -M --shift 5'
-LESSHISTFILE="$HISTDIR/less"
-
-which lesspipe > /dev/null && eval $(lesspipe)
-which dircolors > /dev/null && eval $(dircolors)
-#ZLS_COLORS=LS_COLORS
-
-unsetopt ALL_EXPORT
 #}}}
 
 ## Prompting
@@ -211,6 +193,7 @@ preexec () { setxtermheader "%n@%m: ${1//\%/\%\%}" }
 #{{{
 
 alias ls='ls --color=auto '
+alias grep='grep --color=auto'
 alias 2koi8r='export LANG=ru_RU.KOI8-R'
 alias 2utf8='export LANG=ru_RU.UTF-8'
 
