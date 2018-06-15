@@ -110,16 +110,9 @@ mvln () {
 
 #}}}
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
-
-if [ -f ~/.bash_completion ]; then
-    . ~/.bash_completion
-fi
+# enable programmable completion features
+[ -f /etc/bash_completion ] && . /etc/bash_completion
+[ -f ~/.bash_completion ] && . ~/.bash_completion
 
 # If there are running screens info on them
 if which screen > /dev/null; then
