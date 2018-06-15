@@ -291,11 +291,9 @@ zstyle ':completion:*:functions' ignored-patterns '_*'
 zstyle ':completion:*:*:*:users' ignored-patterns `cat /etc/passwd | awk -F ":" '{ if($3<1000 || $3==65534) print $1 }'`
 #}}}
 
-# Add host-specific zshrc
-if [ -f $HOME/.zshrc-$HOST ]
-then
-    . $HOME/.zshrc-$HOST
-fi
+# Source local and host-specific configs
+[ -f ~/.zshrc-local ] && . ~/.zshrc-local
+[ -f ~/.zshrc-$HOST ] && . ~/.zshrc-$HOST
 
 # If there are running screens info on them
 if which screen > /dev/null; then
