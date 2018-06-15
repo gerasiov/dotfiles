@@ -123,9 +123,9 @@ fi
 
 # If there are running screens info on them
 if which screen > /dev/null; then
-	ZSHRC_SCREENLIST=$(screen -ls | awk '/^[\t ]/ { ORS=" "; gsub(/\..*/,""); print $1}')
-	if [ "$ZSHRC_SCREENLIST" ]; then
-		echo "There are screens running: $ZSHRC_SCREENLIST"
+	SCREENLIST=$(screen -ls | awk '/^[\t ]/ { ORS=" "; gsub(/\..*/,""); print $1}')
+	if [ "$SCREENLIST" ]; then
+		echo "There are screens running: $SCREENLIST"
 	fi
 fi
 
