@@ -4,6 +4,7 @@ export DEBEMAIL="gq@debian.org"
 export PATH="$PATH:/usr/local/sbin/:/sbin:/usr/sbin"
 [ -d /usr/lib/ccache ] && PATH=/usr/lib/ccache:"${PATH}"
 [ -d ~/bin ] && PATH=~/bin:"${PATH}"
+[ -d /snap/bin ] && PATH="${PATH}":/snap/bin
 
 export TZ="Europe/Moscow"
 which less > /dev/null && export PAGER='less'
