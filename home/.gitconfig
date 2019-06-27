@@ -8,3 +8,6 @@
 	diff = auto
 	status = auto
 	ui = auto
+
+[includeIf "gitdir:~/ya/"]
+	path = ~/ya/.gitconfig
