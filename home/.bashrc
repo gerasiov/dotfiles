@@ -6,7 +6,14 @@
 [ -z "$PS1" ] && return
 
 # if zsh exists use it
-which zsh >/dev/null&& [ -z "$FORCE" ] && exec zsh
+which zsh >/dev/null&& [ -z "$FORCE" ] && {
+if [ "$XDG_SESSION_TYPE" = "tty" ];then
+	zsh
+	exit 0
+else
+	exec zsh
+fi
+}
 
 HISTDIR="$HOME/.local/share/history"
 [ -d "$HISTDIR" ] || mkdir -p "$HISTDIR"
