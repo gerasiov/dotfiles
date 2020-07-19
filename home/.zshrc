@@ -295,11 +295,18 @@ zstyle ':completion:*:*:*:users' ignored-patterns `cat /etc/passwd | awk -F ":" 
 [ -f ~/.zshrc-local ] && . ~/.zshrc-local
 [ -f ~/.zshrc-$HOST ] && . ~/.zshrc-$HOST
 
-# If there are running screens info on them
+# If there are running screens or tmuxes info on them
 if which screen > /dev/null; then
 	SCREENLIST=$(screen -ls | awk '/^[\t ]/ { ORS=" "; gsub(/\..*/,""); print $1}')
 	if [ "$SCREENLIST" ]; then
 		echo "There are screens running: $SCREENLIST"
+	fi
+fi
+if which tmux > /dev/null; then
+	TMUX_SESSIONS="$(tmux ls 2>/dev/null)"
+	if [ "$TMUX_SESSIONS" ]; then
+		echo "There are tmux sessions running:"
+		echo "$TMUX_SESSIONS"
 	fi
 fi
 
