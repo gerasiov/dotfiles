@@ -2,8 +2,8 @@
 	commitEncoding = utf-8
 	logOutputEncoding = utf-8
 [user]
-	name = Alexander GQ Gerasiov
-	email = gq@cs.msu.su
+	name = Alexander Gerasiov
+	email = a@gerasiov.net
 [color]
 	diff = auto
 	status = auto
