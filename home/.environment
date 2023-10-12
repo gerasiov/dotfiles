@@ -6,7 +6,7 @@ export PATH="$PATH:/usr/local/sbin/:/sbin:/usr/sbin"
 [ -d ~/bin ] && PATH=~/bin:"${PATH}"
 [ -d /snap/bin ] && PATH="${PATH}":/snap/bin
 
-export TZ="Europe/Moscow"
+export TZ="Asia/Jerusalem"
 which less > /dev/null && export PAGER='less'
 which vim > /dev/null && export EDITOR='vim'
 
