@@ -9,5 +9,8 @@
 	status = auto
 	ui = auto
 
+[includeIf "gitdir:~/avride/"]
+        path = ~/avride/.gitconfig
+
 [includeIf "gitdir:~/ya/"]
 	path = ~/ya/.gitconfig
