@@ -121,6 +121,12 @@ mvln () {
 [ -f /etc/bash_completion ] && . /etc/bash_completion
 [ -f ~/.bash_completion ] && . ~/.bash_completion
 
+
+# Use fzf if one installed
+[ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && \
+	. /usr/share/doc/fzf/examples/key-bindings.bash
+
+
 # If there are running screens or tmuxes info on them
 if which screen > /dev/null; then
 	SCREENLIST=$(screen -ls | awk '/^[\t ]/ { ORS=" "; gsub(/\..*/,""); print $1}')

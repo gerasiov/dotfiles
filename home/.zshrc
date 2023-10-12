@@ -310,6 +310,10 @@ if which tmux > /dev/null; then
 	fi
 fi
 
+# Use fzf if one installed
+[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && \
+	. /usr/share/doc/fzf/examples/key-bindings.zsh
+
 # Keep .zshrc compiled %)
 #autoload -U zrecompile
 #[ -f ~/.zshrc ] && zrecompile -p ~/.zshrc && rm -f ~/.zshrc.zwc.old
