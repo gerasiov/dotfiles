@@ -121,11 +121,14 @@ mvln () {
 [ -f /etc/bash_completion ] && . /etc/bash_completion
 [ -f ~/.bash_completion ] && . ~/.bash_completion
 
-
 # Use fzf if one installed
-[ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && \
-	. /usr/share/doc/fzf/examples/key-bindings.bash
+_FZF=/usr/share/doc/fzf/examples/
+if which fzf-share > /dev/null; then
+	_FZF=$(fzf-share)
+fi
 
+[ -f "${_FZF}/key-bindings.bash" ] && . "${_FZF}/key-bindings.bash"
+unset _FZF
 
 # If there are running screens or tmuxes info on them
 if which screen > /dev/null; then

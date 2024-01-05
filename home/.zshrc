@@ -311,8 +311,13 @@ if which tmux > /dev/null; then
 fi
 
 # Use fzf if one installed
-[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && \
-	. /usr/share/doc/fzf/examples/key-bindings.zsh
+_FZF=/usr/share/doc/fzf/examples/
+if which fzf-share > /dev/null; then
+	_FZF=$(fzf-share)
+fi
+
+[ -f "${_FZF}/key-bindings.zsh" ] && . "${_FZF}/key-bindings.zsh"
+unset _FZF
 
 # Keep .zshrc compiled %)
 #autoload -U zrecompile
