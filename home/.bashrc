@@ -138,7 +138,7 @@ if which screen > /dev/null; then
 	fi
 fi
 if which tmux > /dev/null; then
-	TMUX_SESSIONS="$(tmux ls)"
+	TMUX_SESSIONS="$(tmux ls 2>/dev/null)"
 	if [ "$TMUX_SESSIONS" ]; then
 		echo "There are tmux sessions running:"
 		echo "$TMUX_SESSIONS"
