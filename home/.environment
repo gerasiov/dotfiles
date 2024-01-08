@@ -7,13 +7,13 @@ export PATH="$PATH:/usr/local/sbin/:/sbin:/usr/sbin"
 [ -d /snap/bin ] && PATH="${PATH}":/snap/bin
 
 export TZ="Asia/Jerusalem"
-which less > /dev/null && export PAGER='less'
-which vim > /dev/null && export EDITOR='vim'
+command -v less > /dev/null && export PAGER='less'
+command -v vim > /dev/null && export EDITOR='vim'
 
 export GREP_COLORS='1;32'
 export LESS='-R -M --shift 5'
 export LESSHISTFILE="$HISTDIR/less"
 
-which lesspipe > /dev/null && eval $(lesspipe)
-which dircolors > /dev/null && eval $(dircolors)
+command -v lesspipe > /dev/null && eval $(lesspipe)
+command -v dircolors > /dev/null && eval $(dircolors)
 

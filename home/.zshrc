@@ -124,7 +124,7 @@ zmodload -a zsh/mapfile mapfile
 ## Various exports
 #{{{
 
-export SHELL=$(which zsh)
+export SHELL=$(command -v zsh)
 
 [ -f ~/.environment ] && . ~/.environment
 [ -f ~/.environment-local ] && . ~/.environment-local
@@ -197,7 +197,7 @@ alias grep='grep --color=auto'
 alias 2koi8r='export LANG=ru_RU.KOI8-R'
 alias 2utf8='export LANG=ru_RU.UTF-8'
 
-if which grc >/dev/null; then
+if command -v grc >/dev/null; then
   for COMMAND in \
 	  ping traceroute netstat ifconfig \
 	  mount df \
@@ -296,13 +296,13 @@ zstyle ':completion:*:*:*:users' ignored-patterns `cat /etc/passwd | awk -F ":" 
 [ -f ~/.zshrc-$HOST ] && . ~/.zshrc-$HOST
 
 # If there are running screens or tmuxes info on them
-if which screen > /dev/null; then
+if command -v screen > /dev/null; then
 	SCREENLIST=$(screen -ls | awk '/^[\t ]/ { ORS=" "; gsub(/\..*/,""); print $1}')
 	if [ "$SCREENLIST" ]; then
 		echo "There are screens running: $SCREENLIST"
 	fi
 fi
-if which tmux > /dev/null; then
+if command -v tmux > /dev/null; then
 	TMUX_SESSIONS="$(tmux ls 2>/dev/null)"
 	if [ "$TMUX_SESSIONS" ]; then
 		echo "There are tmux sessions running:"
@@ -312,7 +312,7 @@ fi
 
 # Use fzf if one installed
 _FZF=/usr/share/doc/fzf/examples/
-if which fzf-share > /dev/null; then
+if command -v fzf-share > /dev/null; then
 	_FZF=$(fzf-share)
 fi
 
