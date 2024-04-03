@@ -47,7 +47,7 @@ HISTORY_IGNORE='(ls|bg|fg|cd *|run-help *|popd)'
 #{{{
 bindkey -e				# OMG! Emacs mode rule, vi mode suxx!
 
-setopt interactive_comments		# Allow comments in interactive mode
+setopt INTERACTIVE_COMMENTS		# Allow comments in interactive mode
 
 #bindkey '^fi' push-line					# Push line into buffer until next <CR>
 bindkey "^[[5~" history-beginning-search-backward	# PgUp for history search
@@ -179,12 +179,18 @@ case "$TERM" in
   *)
     setxtermheader() { ; }
 esac
+
+precmd_xterm_header () { setxtermheader "%n@%m: %~" }
+preexec_xterm_header () { setxtermheader "%n@%m: ${1//\%/\%\%}" }
+
 #}}}
 
 ## Hook functions
 #{{{
-precmd () { setxtermheader "%n@%m: %~" }
-preexec () { setxtermheader "%n@%m: ${1//\%/\%\%}" }
+
+precmd_functions+=( precmd_xterm_header )
+preexec_functions+=( preexec_xterm_header )
+
 #chpwd () { }
 
 #}}}
@@ -192,43 +198,12 @@ preexec () { setxtermheader "%n@%m: ${1//\%/\%\%}" }
 ## Aliases
 #{{{
 
-alias ls='ls --color=auto '
+alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-alias 2koi8r='export LANG=ru_RU.KOI8-R'
-alias 2utf8='export LANG=ru_RU.UTF-8'
 
-if command -v grc >/dev/null; then
-  for COMMAND in \
-	  ping traceroute netstat ifconfig \
-	  mount df \
-	  configure make gcc g++ \
-	  diff wdiff \
-	  cvs;
-  do
-    alias ${COMMAND}="grc --colour=auto $COMMAND"
-  done
+if [ -f /etc/profile.d/grc.sh ]; then
+	GRC_ALIASES=true . /etc/profile.d/grc.sh
 fi
-
-#}}}
-
-## Functions
-#{{{
-mvln () {
-	if [ $# -ne 2 ];then
-		echo "Usage: mvln source destination" >&2
-		return 1
-	fi
-
-	local SOURCE="$1"
-	local TARGET="$2"
-
-	if [ -d "$TARGET" ];then
-		TARGET="$TARGET"/"$(basename "$SOURCE")"
-	fi
-
-	mv "$SOURCE" "$TARGET"||return 1
-	ln -s "$TARGET" "$SOURCE"||return 1
-}
 
 #}}}
 
@@ -252,12 +227,7 @@ zstyle -e ':completion:*:approximate:*' max-errors \
     'reply=( $(( ($#PREFIX+$#SUFFIX)/2 )) numeric )'
 zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
 
-#zstyle ':completion:*' completer \
-#	_complete _correct _approximate
-#zstyle ':completion:incremental:*' completer \
-#	_complete _correct
-#zstyle ':completion:predict:*' completer \
-#	_complete
+
 
 # formatting and messages
 zstyle ':completion:*' verbose yes
