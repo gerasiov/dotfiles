@@ -151,7 +151,7 @@ if [[ "$terminfo[colors]" -ge 8 ]]; then
 	colors
 fi
 
-for color in BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
+for color in BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE GREY; do
 	eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
 	eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
 	(( count = $count + 1 ))
@@ -159,11 +159,17 @@ done
 
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
 
-setopt ALL_EXPORT
-PS1="[$PR_BLUE%n$PR_NO_COLOR@$PR_GREEN%U%m%u$PR_NO_COLOR:$PR_RED%~$PR_NO_COLOR]%(!.#.$) "
+autoload -Uz vcs_info
+precmd_functions+=( vcs_info )
+setopt PROMPT_SUBST
+zstyle ':vcs_info:*' formats "{%s $PR_LIGHT_GREEN%b%m%u%c$PR_NO_COLOR}"
+zstyle ':vcs_info:git:*' formats "{$PR_LIGHT_GREEN%b%m%u%c$PR_NO_COLOR}"
+zstyle ':vcs_info:git:*' formatsAction "{$PR_LIGHT_GREEN%b%m%u%c$PR_NO_COLOR} ($PR_LIGHT_GREEN%a$PR_NO_COLOR)"
+
+
+PS1='[$PR_BLUE%n$PR_NO_COLOR@$PR_GREEN%U%m%u$PR_NO_COLOR $PR_RED%~$PR_NO_COLOR]${vcs_info_msg_0_}'"$PR_GREY%(!.#.$)$PR_NO_COLOR "
 test "$MC_SID" && PS1="(mc)$PS1"
 test "$debian_chroot" && PS1="($debian_chroot)$PS1"
-unsetopt ALL_EXPORT
 
 #}}}
 
