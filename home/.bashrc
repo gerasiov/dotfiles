@@ -51,10 +51,10 @@ fi
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
 xterm*|screen)
-    PS1='${debian_chroot:+($debian_chroot)}(bash)[\[\033[01;34m\]\u\[\033[00m\]@\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;31m\]\w\[\033[00m\]]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}${IN_NIX_SHELL:+(nix-shell)}(bash)[\[\033[01;34m\]\u\[\033[00m\]@\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;31m\]\w\[\033[00m\]]\$ '
     ;;
 *)
-    PS1='${debian_chroot:+($debian_chroot)}(bash)\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}${IN_NIX_SHELL:+(nix-shell)}(bash)\u@\h:\w\$ '
     ;;
 esac
 
@@ -76,6 +76,8 @@ screen)
 *)
     ;;
 esac
+
+NIX_SHELL_PRESERVE_PROMPT=1
 
 ## Aliases
 #{{{
