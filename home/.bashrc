@@ -19,7 +19,7 @@ HISTDIR="$HOME/.local/share/history"
 [ -d "$HISTDIR" ] || mkdir -p "$HISTDIR"
 
 # Export some variables
-export SHELL=$(command -v bash)
+SHELL=$(command -v bash)
 
 [ -f ~/.environment ] && . ~/.environment
 [ -f ~/.environment-local ] && . ~/.environment-local

@@ -124,7 +124,7 @@ zmodload -a zsh/mapfile mapfile
 ## Various exports
 #{{{
 
-export SHELL=$(command -v zsh)
+SHELL=$(command -v zsh)
 
 [ -f ~/.environment ] && . ~/.environment
 [ -f ~/.environment-local ] && . ~/.environment-local
