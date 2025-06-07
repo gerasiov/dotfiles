@@ -177,17 +177,17 @@ test "$debian_chroot" && PS1="($debian_chroot)$PS1"
 #{{{
 case "$TERM" in
   xterm*|rxvt)
-    setxtermheader() { print -Pn "\e]0;$*\a" }
+    setxtermheader() { print -Pn "\e]0;$1"; print -n "$2"; print -Pn "\a" }
     ;;
   screen)
-    setxtermheader() { print -Pn "\ek$*\e\\" }
+    setxtermheader() { print -Pn "\ek$1"; print -n "$2"; print -Pn "\e\\" }
     ;;
   *)
     setxtermheader() { ; }
 esac
 
 precmd_xterm_header () { setxtermheader "%n@%m: %~" }
-preexec_xterm_header () { setxtermheader "%n@%m: ${1//\%/\%\%}" }
+preexec_xterm_header () { setxtermheader "%n@%m: " "$1" }
 
 #}}}
 
